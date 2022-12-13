@@ -145,6 +145,9 @@ RUN curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/
 # Rust source code (needed for analyzer)
 RUN cd /tmp; curl -O https://static.rust-lang.org/dist/rustc-1.65.0-src.tar.gz && tar zxf rustc-1.65.0-src.tar.gz && cd rustc-1.65.0-src && mkdir -p /usr/local/lib/rustlib/src/rust/library/ && mkdir -p /usr/local/lib/rustlib/src/rust/src/llvm-project/ && cp -r src/llvm-project /usr/local/lib/rustlib/src/rust/src/ && cp -r library /usr/local/lib/rustlib/src/rust/ && cp Cargo.lock /usr/local/lib/rustlib/src/rust/ && cd .. && rm -rf rustc-1.65.0-src rustc-1.65.0-src.tar.gz
 
+# Manpages
+RUN echo "Y" | unminimize
+
 USER $USERNAME
 
 WORKDIR /home/workspace/
